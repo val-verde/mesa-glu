@@ -26,7 +26,7 @@ AC_INIT([glu],
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CANONICAL_HOST
 
-AM_INIT_AUTOMAKE([dist-bzip2 foreign subdir-objects])
+AM_INIT_AUTOMAKE([dist-xz foreign subdir-objects])
 
 LT_PREREQ([2.2])
 LT_INIT
