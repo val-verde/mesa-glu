@@ -58,34 +58,52 @@ m4_ifndef([PKG_PROG_PKG_CONFIG],
   ACLOCAL="aclocal -I/other/macro/dir" before running autoreconf.])])
 PKG_PROG_PKG_CONFIG()
 
+AC_ARG_ENABLE(libglvnd,
+              AS_HELP_STRING([--enable-libglvnd],
+                [Enable use of libglvnd]),
+              [LIBGLVND="$enableval"],
+              [LIBGLVND=no])
+
 AC_ARG_ENABLE(osmesa,
               AS_HELP_STRING([--enable-osmesa],
                 [Enable use of OSMesa instead of libGL]),
               [OSMESA="$enableval"],
               [OSMESA=no])
 
-dnl Get the pkg-config definitions for libGL/OSMesa.  We include a fallback
-dnl path for implementations that don't provide a .pc file
-if test "x$OSMESA" = "xyes"; then
+dnl Get the pkg-config definitions for libglvnd/OSMesa/libGL.  We include a
+dnl fallback path for implementations that don't provide a .pc file
+AS_IF([test "x$LIBGLVND" = "xyes"], [
+    GLU_REQUIRES="libglvnd"
+    PKG_CHECK_MODULES(LIBGLVND, [opengl], [], [
+        AC_CHECK_HEADER([GL/gl.h],
+                        [],
+                        AC_MSG_ERROR([libglvnd GL not found]))
+        AC_CHECK_LIB([OpenGL],
+                     [glBegin],
+                     [GL_LIBS=-lOpenGL],
+                     AC_MSG_ERROR([libglvnd libOpenGL required]))
+    ])
+], [test "x$OSMESA" = "xyes"], [
     GLU_REQUIRES="osmesa"
     PKG_CHECK_MODULES(OSMESA, [osmesa], [], [
-          AC_CHECK_LIB([OSMesa],
-                   [glBegin],
-                   [OSMESA_LIBS=-lOSMesa],
-                   AC_MSG_ERROR([OSMesa required]))
-          ])
-else
+        AC_CHECK_LIB([OSMesa],
+                     [glBegin],
+                     [OSMESA_LIBS=-lOSMesa],
+                     AC_MSG_ERROR([OSMesa required]))
+    ])
+], [
     GLU_REQUIRES="gl"
     PKG_CHECK_MODULES(GL, [gl], [], [
-          AC_CHECK_HEADER([GL/gl.h],
-                  [],
-                  AC_MSG_ERROR([GL not found]))
-          AC_CHECK_LIB([GL],
-                   [glBegin],
-                   [GL_LIBS=-lGL],
-                   AC_MSG_ERROR([GL required]))
-          ])
-fi
+        AC_CHECK_HEADER([GL/gl.h],
+                        [],
+                        AC_MSG_ERROR([GL not found]))
+        AC_CHECK_LIB([GL],
+                     [glBegin],
+                     [GL_LIBS=-lGL],
+                     AC_MSG_ERROR([GL required]))
+    ])
+])
+
 AC_SUBST([GLU_REQUIRES])
 
 dnl Set up C warning and visibility flags.

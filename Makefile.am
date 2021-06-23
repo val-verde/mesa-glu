@@ -30,8 +30,8 @@ AM_CPPFLAGS = -DLIBRARYBUILD \
 	-I$(top_srcdir)/src/libnurbs/internals \
 	-I$(top_srcdir)/src/libnurbs/interface \
 	-I$(top_srcdir)/src/libnurbs/nurbtess
-AM_CFLAGS = $(GL_CFLAGS) $(OSMESA_CFLAGS) $(WARNCFLAGS) $(VISIBILITY_CFLAGS)
-AM_CXXFLAGS = $(GL_CFLAGS) $(OSMESA_CFLAGS) $(WARNCXXFLAGS) $(VISIBILITY_CXXFLAGS)
+AM_CFLAGS = $(GL_CFLAGS) $(LIBGLVND_CFLAGS) $(OSMESA_CFLAGS) $(WARNCFLAGS) $(VISIBILITY_CFLAGS)
+AM_CXXFLAGS = $(GL_CFLAGS) $(LIBGLVND_CFLAGS) $(OSMESA_CFLAGS) $(WARNCXXFLAGS) $(VISIBILITY_CXXFLAGS)
 
 GL_includedir = $(includedir)/GL
 GL_include_HEADERS = \
@@ -130,7 +130,7 @@ libGLU_la_SOURCES =						\
 	src/libnurbs/nurbtess/sampleMonoPoly.cc			\
 	src/libnurbs/nurbtess/sampledLine.cc			\
 	src/libnurbs/nurbtess/searchTree.cc
-libGLU_la_LIBADD = $(GL_LIBS) $(OSMESA_LIBS)
+libGLU_la_LIBADD = $(GL_LIBS) $(LIBGLVND_LIBS) $(OSMESA_LIBS)
 libGLU_la_LDFLAGS = -version-number $(GLU_LIBRARY_VERSION) -no-undefined -export-symbols-regex '^glu'
 
 EXTRA_DIST =							\
