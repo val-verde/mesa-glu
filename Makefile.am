@@ -134,8 +134,11 @@ libGLU_la_LIBADD = $(GL_LIBS) $(LIBGLVND_LIBS) $(OSMESA_LIBS)
 libGLU_la_LDFLAGS = -version-number $(GLU_LIBRARY_VERSION) -no-undefined -export-symbols-regex '^glu'
 
 EXTRA_DIST =							\
+	meson.build     					\
+	meson_options.txt					\
 	include/GL/glu.h					\
 	include/GL/glu_mangle.h					\
+	src/meson.build     					\
 	src/libtess/render.h					\
 	src/libtess/tessmono.h					\
 	src/libtess/mesh.h					\
