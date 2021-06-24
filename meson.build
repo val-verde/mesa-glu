@@ -6,7 +6,7 @@ project(
   ['c', 'cpp'],
   version : '9.0.1',
   meson_version : '>= 0.52.0',
-  license : 'SGI-B-1.1 AND SGI-B-2.0 AND MIT AND GPL-2.0-or-later',
+  license : 'SGI-B-1.1 AND SGI-B-2.0 AND MIT',
   default_options : ['default_library=both', 'b_ndebug=if-release']
 )
 
@@ -25,7 +25,6 @@ inc_include = include_directories('include')
 subdir('src')
 
 install_headers(
-  'include/GL/glu_mangle.h',
   'include/GL/glu.h',
   subdir : 'GL',
 )

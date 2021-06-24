@@ -35,8 +35,7 @@ AM_CXXFLAGS = $(GL_CFLAGS) $(LIBGLVND_CFLAGS) $(OSMESA_CFLAGS) $(WARNCXXFLAGS) $
 
 GL_includedir = $(includedir)/GL
 GL_include_HEADERS = \
-	$(top_srcdir)/include/GL/glu.h \
-	$(top_srcdir)/include/GL/glu_mangle.h
+	$(top_srcdir)/include/GL/glu.h
 
 GLU_LIBRARY_VERSION=1:3:1
 lib_LTLIBRARIES = libGLU.la
@@ -137,7 +136,6 @@ EXTRA_DIST =							\
 	meson.build     					\
 	meson_options.txt					\
 	include/GL/glu.h					\
-	include/GL/glu_mangle.h					\
 	src/meson.build     					\
 	src/libtess/render.h					\
 	src/libtess/tessmono.h					\
