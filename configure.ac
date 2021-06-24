@@ -21,8 +21,8 @@
 
 AC_PREREQ([2.60])
 AC_INIT([glu],
-        [9.0.1],
-        [https://bugs.freedesktop.org/enter_bug.cgi?product=Mesa&component=GLU])
+        [9.0.2],
+        [https://gitlab.freedesktop.org/mesa/glu/issues])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CANONICAL_HOST
 

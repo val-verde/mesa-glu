@@ -4,7 +4,7 @@
 project(
   'glu',
   ['c', 'cpp'],
-  version : '9.0.1',
+  version : '9.0.2',
   meson_version : '>= 0.52.0',
   license : 'SGI-B-1.1 AND SGI-B-2.0 AND MIT',
   default_options : ['default_library=both', 'b_ndebug=if-release']
