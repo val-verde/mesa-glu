@@ -55,7 +55,7 @@ oglTrimLoops* tempTrim = NULL;
 
 
 //for LOD
-extern "C" {void glu_LOD_eval_list(GLUnurbs *nurb, int level);}
+void glu_LOD_eval_list(GLUnurbs *nurb, int level);
 
 void glu_LOD_eval_list(GLUnurbs *nurb, int level)
 {
@@ -77,9 +77,7 @@ gluDeleteNurbsRenderer(GLUnurbs *r)
     delete r;
 }
 
-extern "C"
 void GLAPIENTRY
-
 gluDeleteNurbsTessellatorEXT(GLUnurbsObj *r)
 {
   delete r;
