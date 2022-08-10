@@ -33,6 +33,10 @@
 
 #include <GL/gl.h>
 
+#ifdef _WIN32
+#include <GL/glext.h>
+#endif
+
 #ifndef GLAPIENTRY
 #if defined(_MSC_VER) || defined(__MINGW32__)
 #define GLAPIENTRY __stdcall
